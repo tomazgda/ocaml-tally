@@ -10,7 +10,7 @@ On nix run
 nix-shell
 ```
 
-to install dependencies in `shell.nix`.
+to install dependencies defined in `shell.nix`.
 
 Then to build run
 
@@ -26,8 +26,8 @@ The exectuble can be found in `_build/default/bin/main.exe`.
 Tally - a plain text accounting tool
           
 Usage	
-		tally   --create [directory] [suffix] [dest]    create a tally from a directory of files matching [suffix] and saves it at [dest]
-	    tally   --print [file]                          print a tally from a tally file
-    	tally   --help                                  print help information
+tally   --create [directory] [suffix] [dest]    create a tally from a directory of files matching [suffix] and saves it at [dest]
+tally   --print [file]                          print a tally from a tally file
+tally   --help                                  print help information
 ```
 
