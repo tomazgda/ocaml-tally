@@ -4,16 +4,18 @@ open Base
 type amount = float * float
 [@@deriving sexp]
 
-(* an account is a unique identifier of an amount t*)
-type account =
-  | Joint 	of amount
-  | Expense 	of amount
-  | Income	of amount
+(* an account is a unique identifier *)
+type account = Joint | Expense | Income
 [@@deriving sexp]
 
-(* a transaction is a a summay with a date and name  *)
+(* a transfer contains an account and an amount *)
+type transfer = account * amount
+[@@deriving sexp]
+
+(* a transaction is a list of transfers with a date and name
+   - the transfers must balance *)
 type transaction = {
     date 	: string;
     name 	: string;
-    accounts	: account list}
+    transfers	: transfer list}
 [@@deriving sexp]

@@ -40,15 +40,15 @@ let to_tally xs =
     in
 
     (* Construct movements *)
-    let accounts =
+    let transfers =
       if Float.(amount >= 0.) then
-        [Joint (amount, 0.); Income (0., amount)]
+        [(Joint, (amount, 0.)); (Income, (0., amount))]
       else
-        [Joint (0., Float.abs amount); Expense (Float.abs amount, 0.)]
+        [(Joint, (0., Float.abs amount)); (Expense, (Float.abs amount, 0.))]
     in
 
     (* construct the transaction *)
-    { date; name; accounts }
+    { date; name; transfers }
   in
 
   List.map ~f:(fun line ->
