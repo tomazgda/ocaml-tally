@@ -48,10 +48,16 @@ The exectuble can be found in `_build/default/bin/main.exe`.
 Tally - a plain text accounting tool
           
 Usage 
-tally create <directory> <suffix> <dest>			create a tally file from a directory of files matching <suffix> and saves it at <dest>
-tally print <file>									print a tally from a tally file
-tally balance	-i <file>							print the balances of all accounts
-tally balance -i <file> -a <accounts>				print the balances of specified accounts <accounts> in form 'account1' 'account2' ... etc
-tally balance -i <file> --from <date> --to <date>	print the balance between a start and end date in form 'year-month-day'
-tally --help										print help information
+tally create <directory> <suffix>
+> create a tally file from a directory of files matching <suffix> and saves it at <dest>
+tally print <file>
+> print a tally from a tally file
+tally balance	-i <file>
+> print the balances of all accounts
+tally balance -i <file> -a <accounts>
+> print the balances of specified accounts <accounts> in form 'account1' 'account2' ... etc
+tally balance -i <file> --from <date> --to <date>
+> print the balance between a start and end date in form 'year-month-day'
+tally --help
+> print help information
 ```
