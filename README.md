@@ -12,7 +12,7 @@ This tally can then be parsed and displayed as reports.
 
 ## Types
 
-Right now, only three acounts exist (Joint, Expense and Income) - postive values in a first-direct statement are parsed as Incomes, and negative as Expenses.
+Right now, only three acounts exist (Joint, Expense and Income) - postive values in a first-direct statement are parsed as Incomes, and negative ones as Expenses.
 
 ```ocaml
 type amount = float * float
@@ -26,21 +26,17 @@ type transaction = {
 
 ## Build
 
-On nix run
-
 ``` bash
 nix-shell
 ```
 
-to install dependencies defined in `shell.nix`.
-
-Then to build run
+Istall dependencies defined in `shell.nix`.
 
 ``` bash
 dune build tally
 ```
 
-The exectuble can be found in `_build/default/bin/main.exe`.
+Builds the executable found in `_build/default/bin/main.exe`.
 
 ## Help
 
