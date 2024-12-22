@@ -57,3 +57,13 @@ tally balance -i <file> --from <date> --to <date>
 tally --help
 > print help information
 ```
+
+## Example
+
+```bash
+tally create "data/" "csv" "first.tally"
+```
+
+```bash
+tally balance -i first.tally -a "Income Expense" --from "2023-04-01" --to "2024-04-01"
+```
