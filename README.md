@@ -44,7 +44,7 @@ Builds the executable found in `_build/default/bin/main.exe`.
 Tally - a plain text accounting tool
           
 Usage 
-tally create <directory> <suffix>
+tally create <directory> <suffix> <dest>
 > create a tally file from a directory of files matching <suffix> and saves it at <dest>
 tally print <file>
 > print a tally from a tally file
