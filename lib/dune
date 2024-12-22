@@ -1,0 +1,4 @@
+(library
+ (name tally)
+ (libraries base)
+ (preprocess (pps ppx_jane)))

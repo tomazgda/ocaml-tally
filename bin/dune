@@ -1,0 +1,6 @@
+(executable
+ (public_name tally)
+ (name main)
+ (libraries tally base)
+ (preprocess (pps ppx_jane)))
+ 
