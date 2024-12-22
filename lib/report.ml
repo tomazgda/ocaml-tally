@@ -10,3 +10,7 @@ let print tally =
   |> List.map ~f:Types.sexp_of_transaction
   |> List.map ~f:Sexp.to_string_hum
   |> List.iter ~f:Stdio.print_endline
+;;
+
+  
+

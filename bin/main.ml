@@ -27,7 +27,9 @@ let () =
   | Some ["--print"; file]		-> Utils.read_tally file 		
                                            |> Report.print
 
+  (* | Some ["--report"; file]		-> Utils.read_tally file *)
+  (*                                          |> Report.summarise *)
+
   | Some ["--help"] 			-> print_help ()
   | _ 					-> print_help ()
-
 ;;
