@@ -11,5 +11,5 @@ nix-shell && dune build
 ## Try
 
 ```sh
-tally --help
+./tally --help
 ```
