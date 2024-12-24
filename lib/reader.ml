@@ -8,18 +8,6 @@ include Types
 
 (* ------------------------------------------------------------------------------------ *)
 
-(* check the first line *)
-let is_first_direct ic =
-  match String.split ~on:',' (In_channel.input_line_exn ic) with
-  | [dt; desc; amt; balance] ->
-     begin
-       String.equal dt "Date"
-       && String.equal desc "Description"
-       && String.equal amt "Amount"
-       && String.equal balance "Balance"
-     end
-  | _ -> failwith "Invalid Statement Type"
-
 let parse_line line =
 
   (* float -> movement list *)
@@ -61,7 +49,8 @@ let parse_line line =
 
 let parse_file filename =
   let make_tally ic =
-    if (is_first_direct ic) then 
+    let first_line = In_channel.input_line_exn ic in
+    if String.equal first_line "Date,Description,Amount,Balance" then
       let f acc x = parse_line x :: acc in
       In_channel.fold_lines ~init:[] ~f:f ic
     else

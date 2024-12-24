@@ -8,9 +8,17 @@ open Base
 
 (* current implementation *)
 
+let is_number s =
+  match Float.of_string_opt s with
+  | Some _ -> true
+  | None -> false
+
 let pad_string width s =
   let padding = width - String.length s in
-  s ^ String.make padding ' '
+  if (is_number s) then
+    String.make padding ' ' ^ s
+  else
+    s ^ String.make padding ' '
 
 let column_widths table =
   

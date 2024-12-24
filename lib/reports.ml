@@ -47,7 +47,7 @@ let summarise directory =
   let make_row account balance =
     let format = Int.to_float
                  >> (fun n -> n /. 100.0)
-                 >> Float.to_string_hum ~delimiter:'_' ~decimals:2
+                 >> Float.to_string_hum ~delimiter:',' ~decimals:2
     in
     
     let (cr,db) = Utils.map_double ~f:format balance in
