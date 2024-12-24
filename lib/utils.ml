@@ -1,12 +1,31 @@
+(* utils.ml *)
+
 open Base
-open Stdio
 
-include Types
+(* ------------------------------------------------------------------------------------ *)
 
-(* ------------------------------------------------------------------------------------------ *)
+let ( >> ) f g x = g (f x)
+let map_double ~f (a, b) = (f a, f b)
 
-(* return a list of file paths *)
-let dir_contents dir suffix =
+(* let round ~dp n = Float.round (n *. 100.) /. 100.;; *)
+
+(* ------------------------------------------------------------------------------------ *)
+
+let parse_date date =
+  match String.split ~on:'/' date with
+  | [d;m;y] -> y ^ "-" ^ m ^ "-" ^ d
+  | _ -> failwith "Invalid date format: expected 'dd/mm/yyyy'"
+
+let normalise_string string =
+  string
+  |> String.strip
+  |> String.split ~on:' '
+  |> List.filter ~f:(Fn.non String.is_empty)
+  |> String.concat ~sep:" "
+
+(* ------------------------------------------------------------------------------------ *)
+
+let ls_dir dir =
   let rec loop result = function
     | f::fs when Stdlib.Sys.is_directory f ->
        Stdlib.Sys.readdir f
@@ -14,41 +33,9 @@ let dir_contents dir suffix =
        |> List.map ~f:(Stdlib.Filename.concat f)
        |> List.append fs
        |> loop result
-    | f::fs when Stdlib.Filename.check_suffix f suffix ->
+    | f::fs when Stdlib.Filename.check_suffix f "csv" ->
        loop (f::result) fs
     | _::fs -> loop result fs
     | []    -> result
   in
   loop [] [dir]
-;;
-
-(* reads a file into a list of strings - each string being a line *)
-let read_file filename =
-  In_channel.with_file filename ~f:(fun ic ->
-      In_channel.fold_lines ic ~init:[] ~f:(fun acc line -> line :: acc))
-  |> List.rev
-;;
-
-(* reads a directory into a list of strings - each string being a line *)
-let read_dir dir suffix =
-  dir_contents dir suffix
-  |> List.map ~f:read_file
-  |> List.fold_left ~f:List.append ~init:[]
-
-(* ------------------------------------------------------------------------------------------ *)
-
-(* write a tally to file *)
-let write_tally ~filename tally =
-  Out_channel.with_file filename ~f:(fun out_channel ->
-      List.iter tally ~f:(fun transaction ->
-          Out_channel.fprintf out_channel "%s\n" (Sexp.to_string transaction)))
-;;
-
-(* reads a file into a list of strings - each string being a line *)
-let read_tally filename =
-  In_channel.with_file filename ~f:(fun ic ->
-      In_channel.fold_lines ic ~init:[] ~f:(fun acc line -> (Types.transaction_of_sexp (Parsexp.Single.parse_string_exn line)) :: acc))
-  |> List.rev
-;;
-
-

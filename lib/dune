@@ -1,4 +1,4 @@
 (library
  (name tally)
- (libraries base)
+ (libraries base stdio)
  (preprocess (pps ppx_jane)))

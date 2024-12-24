@@ -1,6 +1,5 @@
 (executable
  (public_name tally)
  (name main)
- (libraries tally base)
- (preprocess (pps ppx_jane)))
+ (libraries tally base stdio cmdliner))
  
