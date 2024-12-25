@@ -2,4 +2,3 @@
  (public_name tally)
  (name main)
  (libraries tally base stdio cmdliner))
- 
